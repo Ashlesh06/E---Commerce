@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - E-Commerce Store{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="py-5 text-center">
+    <div class="py-lg-5">
+        <h1 class="display-5 fw-bold">Welcome to our E-Commerce Store</h1>
+        <div class="col-lg-8 mx-auto">
+            <p class="lead mb-4">Discover the best products at the best prices. Shop our latest collection of electronics, clothing, books, and home goods.</p>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <a href="{{ url_for('products') }}" class="btn btn-primary btn-lg px-4 gap-3">Browse Products</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Categories Section -->
+<section class="py-5">
+    <h2 class="text-center mb-4">Shop by Category</h2>
+    <div class="row">
+        {% for category in categories %}
+        <div class="col-md-3 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-{% if category.slug == 'electronics' %}laptop{% elif category.slug == 'clothing' %}tshirt{% elif category.slug == 'books' %}book{% elif category.slug == 'home-kitchen' %}home{% else %}tag{% endif %} fa-3x mb-3"></i>
+                    <h5 class="card-title">{{ category.name }}</h5>
+                    <a href="{{ url_for('products', category=category.slug) }}" class="btn btn-outline-primary">View Products</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Featured Products Section -->
+<section class="py-5">
+    <h2 class="text-center mb-4">Featured Products</h2>
+    <div class="row">
+        {% for product in featured_products %}
+        <div class="col-md-3 mb-4">
+            <div class="card h-100">
+                <img src="{{ product.image_url }}" class="card-img-top" alt="{{ product.name }}">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text text-muted">{{ product.description|truncate(100) }}</p>
+                    <div class="d-flex justify-content-between align-items-center mt-auto">
+                        <span class="fw-bold">${{ "%.2f"|format(product.price) }}</span>
+                        <a href="{{ url_for('product_detail', slug=product.slug) }}" class="btn btn-sm btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="text-center mt-4">
+        <a href="{{ url_for('products') }}" class="btn btn-outline-primary">View All Products</a>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-4 mb-4 mb-md-0">
+                <div class="card h-100 border-0 bg-transparent">
+                    <div class="card-body">
+                        <i class="fas fa-shipping-fast fa-3x mb-3 text-primary"></i>
+                        <h5 class="card-title">Fast Shipping</h5>
+                        <p class="card-text text-muted">Free shipping on orders over $50. Get your items delivered quickly and reliably.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4 mb-md-0">
+                <div class="card h-100 border-0 bg-transparent">
+                    <div class="card-body">
+                        <i class="fas fa-undo fa-3x mb-3 text-primary"></i>
+                        <h5 class="card-title">Easy Returns</h5>
+                        <p class="card-text text-muted">30-day return policy. If you're not satisfied, return it for a full refund.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 bg-transparent">
+                    <div class="card-body">
+                        <i class="fas fa-lock fa-3x mb-3 text-primary"></i>
+                        <h5 class="card-title">Secure Checkout</h5>
+                        <p class="card-text text-muted">Your payment information is always secure with our encrypted checkout process.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/cart.js') }}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const cart = new ShoppingCart();
+        cart.updateCartSummary();
+    });
+</script>
+{% endblock %}

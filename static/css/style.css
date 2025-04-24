@@ -1,0 +1,129 @@
+/* Custom styles for the e-commerce site */
+
+/* Improve card styles */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Product image styling */
+.card-img-top {
+    height: 200px;
+    object-fit: contain;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Cart badge adjustment */
+#cart-count {
+    transform: translate(25%, -50%) !important;
+}
+
+/* Hero banner styling */
+.hero-banner {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../img/banner.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 5rem 0;
+    margin-bottom: 2rem;
+}
+
+/* Footer styling */
+footer a:hover {
+    color: var(--bs-primary) !important;
+}
+
+/* Product detail page */
+.product-image {
+    max-height: 400px;
+    object-fit: contain;
+}
+
+/* Custom button styles */
+.btn-add-to-cart {
+    transition: all 0.3s ease;
+}
+
+.btn-add-to-cart:hover {
+    transform: scale(1.05);
+}
+
+/* Toast notification positioning */
+.toast-container {
+    z-index: 1100;
+}
+
+/* Form styles */
+.form-floating {
+    margin-bottom: 1rem;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #343a40;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #6c757d;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #495057;
+}
+
+/* Add some spacing to sections */
+section {
+    margin-bottom: 3rem;
+}
+
+/* Price formatting */
+.price {
+    font-weight: bold;
+    color: var(--bs-primary);
+}
+
+/* Improve form validation feedback */
+.invalid-feedback {
+    font-size: 80%;
+}
+
+/* Make category icons consistent */
+.category-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--bs-primary);
+}
+
+/* Responsive tables for order history */
+@media (max-width: 768px) {
+    .table-responsive-mobile {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+    }
+}
+
+/* Custom animation for page transitions */
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
